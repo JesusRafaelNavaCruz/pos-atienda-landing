@@ -3,12 +3,29 @@
 import { Resend } from "resend";
 import { contactSchema } from "../lib/validations/contact";
 import { ZodError } from "zod";
-import { CONFIG } from "@/app/lib/config"
+import { CONFIG } from "@/app/lib/config";
 
-// Inicialización
 const resend = new Resend(CONFIG.RESEND_API_KEY);
 
-export async function SendContactEmail(formData: FormData) {
+export type ContactFormState = {
+  success: boolean;
+  message?: string;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    message?: string[];
+  };
+  submittedData?: {
+    name: string;
+    email: string;
+    message: string;
+  };
+};
+
+export async function sendContactEmail(
+  prevState: ContactFormState,
+  formData: FormData,
+): Promise<ContactFormState> {
   const rawData = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
@@ -35,9 +52,10 @@ export async function SendContactEmail(formData: FormData) {
   }
 
   try {
+
     // Email de confirmación de envio
     await resend.emails.send({
-      from: CONFIG.RESEND_FROM_EMAIL,
+      from: "No-Reply <no-reply@pos-atienda.com>",
       to: validateData.email,
       subject: "¡Gracias por contactarnos!",
       template: {
@@ -47,7 +65,7 @@ export async function SendContactEmail(formData: FormData) {
 
     // Email de notificación Admin
     await resend.emails.send({
-      from: CONFIG.RESEND_FROM_EMAIL!,
+      from: "No-Reply <no-reply@pos-atienda.com>",
       to: CONFIG.RESEND_ADMIN_EMAIL!,
       subject: "Nuevo contacto",
       html: `

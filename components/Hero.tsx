@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
 
 const stats = [
   { value: "500+", label: "Tiendas activas" },
@@ -54,12 +55,12 @@ export default function Hero() {
         initial="hidden"
         animate="show"
       >
-        <motion.div variants={fadeUp}>
+        {/* <motion.div variants={fadeUp}>
           <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-sm text-indigo-300 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
             Nuevo: Reportes en tiempo real disponibles
           </div>
-        </motion.div>
+        </motion.div> */}
 
         <motion.h1
           variants={fadeUp}
@@ -96,19 +97,9 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium px-8 py-3.5 rounded-2xl transition-colors duration-200 text-base"
           >
-            <svg
-              className="w-5 h-5 text-indigo-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Ver demo
+            <Link href="#pricing">
+              Ver precios
+            </Link>
           </motion.button>
         </motion.div>
 

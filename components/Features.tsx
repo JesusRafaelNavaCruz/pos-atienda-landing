@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import ScreenshotCarousel from "./ScreenshotCarousel";
 
 const features = [
   {
@@ -116,6 +117,8 @@ export default function Features() {
             </motion.div>
           ))}
         </motion.div>
+
+        <ScreenshotCarousel />
       </div>
     </section>
   );

@@ -2,62 +2,15 @@
 
 import { motion, type Variants } from "framer-motion";
 
-const testimonials = [
-  {
-    quote:
-      "Desde que usamos POS Atienda el cierre de caja ya no tarda una hora. Ahora son 5 minutos y con todo cuadrado.",
-    author: "María García",
-    business: "Tienda La Esperanza",
-    location: "CDMX, México",
-    initials: "MG",
-    color: "from-indigo-500 to-purple-500",
-  },
-  {
-    quote:
-      "El inventario automático fue un cambio total. Ya no se me acaba la mercancía sin darme cuenta. Recomendadísimo.",
-    author: "Carlos Mendoza",
-    business: "Mini Super El Buen Precio",
-    location: "Monterrey, México",
-    initials: "CM",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    quote:
-      "Lo instalé el mismo día y en una hora ya estaba cobrando. Facilísimo para alguien como yo que no sabe mucho de tecnología.",
-    author: "Ana López",
-    business: "Abarrotes San José",
-    location: "Guadalajara, México",
-    initials: "AL",
-    color: "from-blue-500 to-indigo-500",
-  },
-  {
-    quote:
-      "Los reportes de ventas me ayudan a saber qué productos vendo más. Ahora compro mejor y gano más en cada semana.",
-    author: "Roberto Jiménez",
-    business: "Tienda La Central",
-    location: "Bogotá, Colombia",
-    initials: "RJ",
-    color: "from-teal-500 to-indigo-500",
-  },
-  {
-    quote:
-      "Mis vendedoras aprendieron a usar la caja en menos de una hora. La pantalla táctil hace todo muy intuitivo.",
-    author: "Claudia Torres",
-    business: "Mini Market El Vecino",
-    location: "Lima, Perú",
-    initials: "CT",
-    color: "from-indigo-500 to-cyan-500",
-  },
-  {
-    quote:
-      "Antes usaba una libreta para todo. Ahora tengo el historial de clientes, deudas y ventas del mes en un solo lugar.",
-    author: "Miguel Ángel Reyes",
-    business: "Abarrotes La Familia",
-    location: "Querétaro, México",
-    initials: "MR",
-    color: "from-violet-500 to-indigo-500",
-  },
-];
+export interface Testimonial {
+  slug: string;
+  author: string;
+  quote: string;
+  business: string;
+  location: string;
+  initials: string;
+  color: string;
+}
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -69,7 +22,7 @@ const gridVariants: Variants = {
   show: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
 };
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -98,7 +51,7 @@ export default function Testimonials() {
         >
           {testimonials.map((t) => (
             <motion.div
-              key={t.author}
+              key={t.slug}
               variants={cardVariants}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-indigo-500/20 transition-colors duration-300"

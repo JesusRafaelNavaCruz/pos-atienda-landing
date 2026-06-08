@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -16,16 +17,16 @@ export default function Footer() {
             POS Atienda
           </span>
         </div>
-        <p className="text-slate-500 text-sm order-last sm:order-none">
+        <p className="text-slate-500 text-sm order-last sm:order-0">
           © POS Atienda. Todos los derechos reservados.
         </p>
         <div className="flex gap-6 text-sm text-slate-500">
-          <a href="#" className="hover:text-slate-300 transition-colors">
+          <Link href="/privacidad" className="hover:text-slate-300 transition-colors">
             Privacidad
-          </a>
-          <a href="#" className="hover:text-slate-300 transition-colors">
+          </Link>
+          <Link href="/terminos" className="hover:text-slate-300 transition-colors">
             Términos
-          </a>
+          </Link>
           <a href="#contact" className="hover:text-slate-300 transition-colors">
             Contacto
           </a>

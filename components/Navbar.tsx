@@ -7,7 +7,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-xl border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-xl border-b border-white">
+      <div className="bg-[#2B3AC7] h-10 flex items-center justify-center">
+        <h1 className="text-white font-semibold tracking-tight text-sm">🎉 3 meses gratis al contratar el plan anual - aprovecha la promo</h1>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-3">
@@ -18,38 +21,50 @@ export default function Navbar() {
               height={300}
               className="h-10 w-10 object-contain"
             />
-            <span className="text-xl font-bold text-white tracking-tight">
-              POS Atienda
+            <span className="text-xl font-bold tracking-tight">
+              POS <span className="text-[#2B3AC7]">Atienda</span>
             </span>
           </a>
 
           <div className="hidden md:flex items-center gap-8">
             <a
               href="#features"
-              className="text-sm text-slate-400 hover:text-white transition-colors"
+              className="text-sm  hover:text-slate-500 transition-colors"
             >
-              Características
+              Funciones
             </a>
             <a
               href="#pricing"
-              className="text-sm text-slate-400 hover:text-white transition-colors"
+              className="text-sm hover:text-slate-500 transition-colors"
+            >
+              Hardware
+            </a>
+            <a
+              href="#pricing"
+              className="text-sm hover:text-slate-500 transition-colors"
             >
               Precios
             </a>
             <a
-              href="#contact"
-              className="text-sm text-slate-400 hover:text-white transition-colors"
+              href="#pricing"
+              className="text-sm hover:text-slate-500 transition-colors"
             >
-              Contacto
+              Testimonios
+            </a>
+            <a
+              href="#pricing"
+              className="text-sm hover:text-slate-500 transition-colors"
+            >
+              FAQ
             </a>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <button className="text-sm text-slate-300 hover:text-white px-4 py-2 rounded-xl transition-colors">
+            <button className="text-sm font-bold text-[#2B3AC7] hover:text-slate-500 px-4 py-2 rounded-xl transition-colors">
               Iniciar sesión
             </button>
-            <button className="text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-5 py-2 rounded-xl transition-colors">
-              Crear cuenta
+            <button className="text-sm bg-[#2B3AC7] hover:bg-indigo-500 text-white font-medium px-5 py-2 rounded-xl transition-colors">
+              Prueba gratis
             </button>
           </div>
 

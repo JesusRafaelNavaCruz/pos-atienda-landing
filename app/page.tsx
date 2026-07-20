@@ -38,14 +38,14 @@ export default async function Home() {
     settings?.xUrl         && { name: "X",         href: settings.xUrl },
   ].filter((x): x is { name: string; href: string } => Boolean(x));
 
-  const launchDate   = settings?.launchDate   ?? "2099-01-01T00:00:00-06:00";
+  // const launchDate   = settings?.launchDate   ?? "2099-01-01T00:00:00-06:00";
   const whatsappNumber = settings?.whatsappNumber ?? "";
 
   return (
     <main>
       <Navbar />
       <Hero />
-      <LaunchBanner launchDate={launchDate} />
+      {/* <LaunchBanner launchDate={launchDate} /> */}
       <Features />
       <Pricing />
       <Testimonials testimonials={testimonials} />

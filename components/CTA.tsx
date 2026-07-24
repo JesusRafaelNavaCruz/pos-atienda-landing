@@ -1,3 +1,5 @@
+import { REDIRECT_URLS } from "@/app/lib/config/urls";
+
 export default function CTA() {
   return (
     <section className="bg-white px-4 pb-24 sm:px-6 lg:px-8">
@@ -12,11 +14,11 @@ export default function CTA() {
               Únete a cientos de tiendas en LATAM que ya controlan sus ventas
               con POS Atienda.
             </p>
-            <button
+            <a href={REDIRECT_URLS.SIGNUP}
               className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-10 py-4 rounded-2xl transition-colors duration-200 hover:shadow-xl hover:shadow-indigo-500/30 text-base"
             >
               Crear mi cuenta gratis
-            </button>
+            </a>
           </div>
         </div>
       </div>

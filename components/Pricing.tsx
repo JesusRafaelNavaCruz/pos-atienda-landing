@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { REDIRECT_URLS } from "@/app/lib/config/urls";
 
 type BillingPeriod = "monthly" | "annual";
 
@@ -77,6 +78,10 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           {plans.map((plan) => {
             const price = period === "monthly" ? plan.monthly : plan.annual;
+            const isEnterprise = plan.name === "Enterprise";
+            const ctaHref = isEnterprise
+              ? "#contact"
+              : `${REDIRECT_URLS.CHECKOUT}?plan=${plan.name.toLowerCase()}&period=${period}`;
 
             return (
               <div
@@ -130,15 +135,16 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <button
-                  className={`w-full py-3 rounded-2xl font-semibold text-sm transition-colors duration-200 ${
+                <a
+                  href={ctaHref}
+                  className={`block w-full py-3 rounded-2xl font-semibold text-sm text-center transition-colors duration-200 ${
                     plan.highlighted
                       ? "bg-[#2B3AC7] text-white"
                       : "hover:bg-[#EDF2FA] text-[#2B3AC7] border border-[#2B3AC7]"
                   }`}
                 >
-                   {plan.name == "Enterprise" ? "Hablar con ventas" : `Elegir ${plan.title}`}
-                </button>
+                   {isEnterprise ? "Hablar con ventas" : `Elegir ${plan.title}`}
+                </a>
               </div>
             );
           })}

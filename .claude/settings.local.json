@@ -7,7 +7,8 @@
       "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse goto *)",
       "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse console *)",
       "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse js *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Read(//tmp/**)"
     ]
   }
 }

@@ -1,5 +1,3 @@
-import { Star } from "lucide-react";
-
 export interface Testimonial {
   slug: string;
   author: string;
@@ -12,7 +10,7 @@ export interface Testimonial {
 
 export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   return (
-    <section className="bg-[#EDF2FA] py-24 px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="bg-[#EDF2FA] py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 max-w-140">
           <span className="font-extrabold uppercase tracking-widest text-[#2B3AC7]">

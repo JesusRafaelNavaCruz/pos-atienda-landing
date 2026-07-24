@@ -27,3 +27,10 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Deja espacio para el navbar fijo al scrollear a un ancla (#pricing, #faq, etc.)
+   --nav-height la calcula Navbar.tsx en vivo, así que se ajusta si el navbar
+   cambia de alto (p.ej. el banner de promo se envuelve a 2 líneas en mobile). */
+section[id] {
+  scroll-margin-top: calc(var(--nav-height, 105px) + 16px);
+}

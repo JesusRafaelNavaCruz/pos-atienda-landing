@@ -1,34 +1,16 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { ScanBarcode, Store } from "lucide-react";
+import { Store } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { REDIRECT_URLS } from "@/app/lib/config/urls";
 
-const stats = [
-  { value: "500+", label: "Tiendas activas" },
-  { value: "2M+", label: "Ventas procesadas" },
-  { value: "99.9%", label: "Uptime" },
-];
-
-const stagger: Variants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
 
 export default function Hero() {
   return (
-    <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#FAF9F5EB] to-[#EDF2FA] px-6 pt-40 pb-16 md:px-16 lg:px-24">
+    <section
+      className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#FAF9F5EB] to-[#EDF2FA] px-6 pb-16 md:px-16 lg:px-24"
+      style={{ paddingTop: "calc(var(--nav-height, 105px) + 3.5rem)" }}
+    >
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Columna 1 */}
         <div className="flex flex-col space-y-6 max-w-xl">
@@ -42,12 +24,15 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <button className="bg-[#2B44CE] hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-xl shadow-lg shadow-blue-600/20 transition-colors text-center">
+            <a
+              href={REDIRECT_URLS.SIGNUP}
+              className="bg-[#2B44CE] hover:bg-blue-700 text-white font-medium px-8 py-4 rounded-xl shadow-lg shadow-blue-600/20 transition-colors text-center"
+            >
               Empieza Gratis
-            </button>
-            <button className="bg-white hover:bg-slate-50 text-[#0B1E43] font-medium px-8 py-4 rounded-xl border border-slate-200 shadow-sm transition-colors text-center">
+            </a>
+            <a href={REDIRECT_URLS.SIGNUP} className="bg-white hover:bg-slate-50 text-[#0B1E43] font-medium px-8 py-4 rounded-xl border border-slate-200 shadow-sm transition-colors text-center">
               Descubre Cómo Funciona
-            </button>
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-sm text-slate-500 font-medium">

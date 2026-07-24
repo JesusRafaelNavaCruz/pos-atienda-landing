@@ -2,7 +2,6 @@ import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../keystatic.config";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import LaunchBanner from "@/components/LaunchBanner";
 import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
@@ -12,6 +11,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Hardware from "@/components/Hardware";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -45,12 +45,12 @@ export default async function Home() {
     <main>
       <Navbar />
       <Hero />
-      {/* <LaunchBanner launchDate={launchDate} /> */}
       <Features />
+      <Hardware />
       <Pricing />
       <Testimonials testimonials={testimonials} />
+      <FAQ phoneNumber={whatsappNumber} />
       <CTA />
-      <FAQ />
       <Contact socialLinks={socialLinks} />
       <Footer />
       <ScrollToTop />

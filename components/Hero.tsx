@@ -28,9 +28,8 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#FAF9F5EB] to-[#EDF2FA] px-6 py-24 md:px-16 lg:px-24">
+    <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-[#FAF9F5EB] to-[#EDF2FA] px-6 pt-40 pb-16 md:px-16 lg:px-24">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-
         {/* Columna 1 */}
         <div className="flex flex-col space-y-6 max-w-xl">
           <div className="inline-flex items-center space-x-2 bg-[#E2E9F8] text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full w-fit">

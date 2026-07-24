@@ -7,9 +7,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-xl border-b border-white">
-      <div className="bg-[#2B3AC7] h-10 flex items-center justify-center">
-        <h1 className="text-white font-semibold tracking-tight text-sm">🎉 3 meses gratis al contratar el plan anual - aprovecha la promo</h1>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-white">
+      <div className="bg-[#2B3AC7] h-10 flex items-center justify-center px-5 py-10 md:py-0">
+        <h1 className="text-white font-semibold tracking-tight text-sm text-center">🎉 3 meses gratis al contratar el plan anual - aprovecha la promo</h1>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">

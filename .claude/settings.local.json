@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebSearch",
+      "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse viewport *)",
+      "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse goto *)",
+      "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse console *)",
+      "Bash(/c/Users/rafa_/.claude/skills/gstack/browse/dist/browse js *)",
+      "Bash(npx tsc *)"
     ]
   }
 }

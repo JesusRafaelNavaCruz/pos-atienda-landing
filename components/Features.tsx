@@ -53,12 +53,11 @@ export default function Features() {
   return (
     <section id="features" className="bg-white py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-[560px]">
+        <div className="max-w-140">
           <span className="font-extrabold uppercase tracking-widest text-[#2B3AC7]">Funciones</span>
           <h2 className="font-extrabold tracking-tight text-[#0D2149] text-5xl">Todo lo que tu mostrador necesita</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-10">
-
           {features.map((feat, index) => (
             <Card variant="surface" key={index}>
               <CardIcon>
@@ -68,8 +67,6 @@ export default function Features() {
               <CardDescription>{feat.description}</CardDescription>
             </Card>
           ))}
-
-
         </div>
       </div>
     </section>

@@ -182,6 +182,29 @@ export default function Contact({ socialLinks }: { socialLinks: SocialLink[] }) 
 
               <div className="flex flex-col gap-1.5">
                 <label
+                  htmlFor="phone"
+                  className="text-[#46527A] text-xs font-medium uppercase tracking-wider"
+                >
+                  Teléfono *
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  placeholder="(777) 914-04-07"
+                  className={`${inputClass} ${state.errors?.phone ? "border-red-500/50" : ""}`}
+                  aria-describedby="phone-error"
+                />
+                {state.errors?.phone && (
+                  <p id="phone-error" className="text-red-400 text-xs mt-1">
+                    {state.errors.phone[0]}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label
                   htmlFor="message"
                   className="text-[#46527A] text-xs font-medium uppercase tracking-wider"
                 >

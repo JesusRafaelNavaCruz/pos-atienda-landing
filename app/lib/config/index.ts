@@ -6,7 +6,4 @@ export const CONFIG = {
     RESEND_TEMPLATE_ID_CONTACT: process.env.RESEND_TEMPLATE_ID_CONTACT,
     WHATSAPP_NUMBER: process.env.WHATSAPP_NUMBER,
 
-    // Fecha y hora de lanzamiento en producción (ISO 8601, zona horaria México Ciudad)
-    LAUNCH_DATE: "2026-09-01T00:00:00-06:00",
-
 }

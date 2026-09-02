@@ -1,154 +1,155 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { useState } from "react";
+import { Check } from "lucide-react";
+import { REDIRECT_URLS } from "@/app/lib/config/urls";
+
+type BillingPeriod = "monthly" | "annual";
 
 const plans = [
   {
     name: "Starter",
-    price: "$199",
-    period: "/mes",
+    title: "Básico",
+    monthly: 199,
+    annual: 159,
     description: "Ideal para comenzar",
-    features: ["1 caja", "Inventario", "Reportes básicos"],
+    features: ["1 caja", "Inventario hasta 1,000 productos", "Reportes básicos"],
     highlighted: false,
   },
   {
     name: "Pro",
-    price: "$399",
-    period: "/mes",
+    title: "Pro",
+    monthly: 399,
+    annual: 319,
     description: "El más popular",
-    features: ["Cajas ilimitadas", "Clientes", "Reportes avanzados"],
+    features: ["Hasta 5 cajas", "Clientes y crédito", "Reportes avanzados", "Proveedores"],
     highlighted: true,
   },
   {
     name: "Enterprise",
-    price: "Custom",
-    period: "",
+    title: "Multi-sucursal",
+    monthly: 499,
+    annual: 439,
     description: "Para negocios grandes",
-    features: ["Multi-sucursal", "API", "Soporte prioritario"],
+    features: ["Multi-sucursal", "API y webhooks", "Soporte prioritario 24/7"],
     highlighted: false,
   },
 ];
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
 
-const gridVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function Pricing() {
-  return (
-    <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Planes simples y transparentes
-          </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
-            Sin sorpresas ni costos ocultos. Elige el plan que mejor se adapte
-            a tu negocio.
-          </p>
-        </motion.div>
+  const [period, setPeriod] = useState<BillingPeriod>("annual");
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          {plans.map((plan) => (
-            <motion.div
-              key={plan.name}
-              variants={cardVariants}
-              whileHover={
-                plan.highlighted
-                  ? { scale: 1.07, transition: { duration: 0.2 } }
-                  : { scale: 1.03, transition: { duration: 0.2 } }
-              }
-              className={`relative rounded-3xl p-8 backdrop-blur-xl ${
-                plan.highlighted
-                  ? "bg-indigo-600/15 border-2 border-indigo-500/50 shadow-2xl shadow-indigo-500/15 md:scale-105"
-                  : "bg-white/5 border border-white/10"
+  return (
+    <section id="pricing" className="bg-white py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-10">
+          <span className="uppercase text-sm text-[#2B3AC7] tracking-wider font-extrabold">precios</span>
+          <h2 className="text-[40px] sm:text-4xl lg:text-5xl font-bold text-[#0D2149] mb-4">
+            Un plan a la medida de tu tienda
+          </h2>
+        </div>
+
+        {/* Billing period toggle */}
+        <div className="flex justify-center mb-12">
+          <div className="relative flex items-center bg-[#EDF2FA] border border-[#E2E8F3] rounded-full p-1 gap-1">
+            <button
+              onClick={() => setPeriod("monthly")}
+              className={`relative z-10 px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                period === "monthly" ? "text-white bg-[#2B3AC7]" : "text-[#46527A]"
               }`}
             >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                  <span className="bg-indigo-500 text-white text-xs font-semibold px-4 py-1.5 rounded-full">
-                    Más popular
-                  </span>
-                </div>
-              )}
+              Mensual
+            </button>
+            <button
+              onClick={() => setPeriod("annual")}
+              className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                period === "annual" ? "text-white bg-[#2B3AC7]" : "text-[#46527A]"
+              }`}
+            >
+              Anual · ahorra 20%
+            </button>
+          </div>
+        </div>
 
-              <div className="mb-6">
-                <h3
-                  className={`text-base font-semibold mb-1 ${
-                    plan.highlighted ? "text-indigo-300" : "text-slate-300"
-                  }`}
-                >
-                  {plan.name}
-                </h3>
-                <p className="text-slate-500 text-sm">{plan.description}</p>
-              </div>
+        {/* Plan cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {plans.map((plan) => {
+            const price = period === "monthly" ? plan.monthly : plan.annual;
+            const isEnterprise = plan.name === "Enterprise";
+            const ctaHref = isEnterprise
+              ? "#contact"
+              : `${REDIRECT_URLS.CHECKOUT}?plan=${plan.name.toLowerCase()}&period=${period}`;
 
-              <div className="mb-8 flex items-end gap-1">
-                <span className="text-4xl font-bold text-white">
-                  {plan.price}
-                </span>
-                {plan.period && (
-                  <span className="text-slate-400 text-sm mb-1">
-                    {plan.period}
-                  </span>
-                )}
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-3 text-slate-300 text-sm"
-                  >
-                    <svg
-                      className="w-4 h-4 text-indigo-400 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                className={`w-full py-3 rounded-2xl font-semibold text-sm transition-colors duration-200 ${
+            return (
+              <div
+                key={plan.name}
+                className={`relative rounded-3xl p-8 ${
                   plan.highlighted
-                    ? "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"
-                    : "bg-white/10 hover:bg-white/15 text-white border border-white/10"
+                    ? "bg-[#0D2149] border-2 border-indigo-500/50 shadow-2xl shadow-indigo-500/15 md:scale-105"
+                    : "bg-white border border-[#E2E8F3]"
                 }`}
               >
-                Elegir plan
-              </motion.button>
-            </motion.div>
-          ))}
-        </motion.div>
+                {plan.highlighted && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <span className="bg-[#2B3AC7] text-white text-xs font-extrabold uppercase px-4 py-1.5 rounded-full">
+                      Más popular
+                    </span>
+                  </div>
+                )}
+
+                <div className="mb-6">
+                  <h3
+                    className={`text-base font-semibold mb-1 ${
+                      plan.highlighted ? "text-white" : "text-[#0D2149]"
+                    }`}
+                  >
+                    {plan.title}
+                  </h3>
+                </div>
+
+                <div className="mb-8">
+                  <div className="flex items-end gap-1">
+                    <span className={`text-4xl font-bold ${
+                      plan.highlighted ? "text-white" : "text-[#0D2149]"
+                    }`}>
+                      ${price}
+                    </span>
+                    <span className="text-[#93A3C9] text-sm mb-1">/mes {period === "annual" && ("· pago anual")}</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className={`flex items-center gap-3 text-sm ${
+                        plan.highlighted ? "text-[#C6D2EA]" : "text-[#46527A]"
+                      }`}
+                    >
+                      <Check className="w-5 h-5" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={ctaHref}
+                  className={`block w-full py-3 rounded-2xl font-semibold text-sm text-center transition-colors duration-200 ${
+                    plan.highlighted
+                      ? "bg-[#2B3AC7] text-white"
+                      : "hover:bg-[#EDF2FA] text-[#2B3AC7] border border-[#2B3AC7]"
+                  }`}
+                >
+                   {isEnterprise ? "Hablar con ventas" : `Elegir ${plan.title}`}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

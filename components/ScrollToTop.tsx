@@ -30,7 +30,7 @@ export default function ScrollToTop() {
           transition={{ duration: 0.25, ease: "easeOut" }}
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-2xl bg-indigo-600/80 hover:bg-indigo-500 backdrop-blur-xl border border-indigo-400/30 shadow-lg shadow-indigo-500/20 flex items-center justify-center text-white transition-colors duration-200"
+          className="fixed bottom-21 right-6 z-50 w-11 h-11 rounded-2xl bg-[#2B3AC7] border border-indigo-400/30 shadow-lg shadow-indigo-500/20 flex items-center justify-center text-white transition-colors duration-200"
         >
           <svg
             className="w-5 h-5"

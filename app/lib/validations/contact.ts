@@ -13,6 +13,13 @@ export const contactSchema = z.object({
     .email({ message: "Debes ingresar un correo electrónico válido" })
     .min(5, { message: "El correo electrónico es demasiado corto" })
     .max(255, { message: "El correo electrónico es demasiado largo" }),
+  phone: z
+    .string()
+    .min(10, { message: "El teléfono debe tener al menos 10 dígitos" })
+    .max(20, { message: "El teléfono no puede exceder los 20 caracteres" })
+    .regex(/^[0-9()+\-\s]+$/, {
+      message: "El teléfono solo puede contener números y los símbolos ( ) + -",
+    }),
   message: z
     .string()
     .min(10, { message: "El mensaje debe tener al menos 10 caracteres" })

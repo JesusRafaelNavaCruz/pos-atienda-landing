@@ -1,107 +1,31 @@
-"use client";
+export interface Testimonial {
+  slug: string;
+  author: string;
+  quote: string;
+  business: string;
+  location: string;
+  initials: string;
+  color: string;
+}
 
-import { motion, type Variants } from "framer-motion";
-
-const testimonials = [
-  {
-    quote:
-      "Desde que usamos POS Atienda el cierre de caja ya no tarda una hora. Ahora son 5 minutos y con todo cuadrado.",
-    author: "María García",
-    business: "Tienda La Esperanza",
-    location: "CDMX, México",
-    initials: "MG",
-    color: "from-indigo-500 to-purple-500",
-  },
-  {
-    quote:
-      "El inventario automático fue un cambio total. Ya no se me acaba la mercancía sin darme cuenta. Recomendadísimo.",
-    author: "Carlos Mendoza",
-    business: "Mini Super El Buen Precio",
-    location: "Monterrey, México",
-    initials: "CM",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    quote:
-      "Lo instalé el mismo día y en una hora ya estaba cobrando. Facilísimo para alguien como yo que no sabe mucho de tecnología.",
-    author: "Ana López",
-    business: "Abarrotes San José",
-    location: "Guadalajara, México",
-    initials: "AL",
-    color: "from-blue-500 to-indigo-500",
-  },
-  {
-    quote:
-      "Los reportes de ventas me ayudan a saber qué productos vendo más. Ahora compro mejor y gano más en cada semana.",
-    author: "Roberto Jiménez",
-    business: "Tienda La Central",
-    location: "Bogotá, Colombia",
-    initials: "RJ",
-    color: "from-teal-500 to-indigo-500",
-  },
-  {
-    quote:
-      "Mis vendedoras aprendieron a usar la caja en menos de una hora. La pantalla táctil hace todo muy intuitivo.",
-    author: "Claudia Torres",
-    business: "Mini Market El Vecino",
-    location: "Lima, Perú",
-    initials: "CT",
-    color: "from-indigo-500 to-cyan-500",
-  },
-  {
-    quote:
-      "Antes usaba una libreta para todo. Ahora tengo el historial de clientes, deudas y ventas del mes en un solo lugar.",
-    author: "Miguel Ángel Reyes",
-    business: "Abarrotes La Familia",
-    location: "Querétaro, México",
-    initials: "MR",
-    color: "from-violet-500 to-indigo-500",
-  },
-];
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const gridVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
-};
-
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="bg-[#EDF2FA] py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Lo que dicen nuestros clientes
+        <div className="mb-16 max-w-140">
+          <span className="font-extrabold uppercase tracking-widest text-[#2B3AC7]">
+            Testimonios
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0D2149] mb-4">
+            Comerciantes como tú ya atienden mejor
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Cientos de tiendas en LATAM ya confían en POS Atienda para su
-            operación diaria.
-          </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t) => (
-            <motion.div
-              key={t.author}
-              variants={cardVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-indigo-500/20 transition-colors duration-300"
+            <div
+              key={t.slug}
+              className="bg-white border border-[#E2E8F3] rounded-2xl p-6 flex flex-col gap-4 hover:border-indigo-500/20 transition-colors duration-300"
             >
               <div className="flex gap-1 mb-1" aria-label="5 estrellas">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -117,26 +41,26 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <p className="text-slate-300 text-sm leading-relaxed flex-1">
+              <p className="text-[#0D2149] text-sm leading-relaxed flex-1">
                 &ldquo;{t.quote}&rdquo;
               </p>
 
-              <div className="flex items-center gap-3 pt-2 border-t border-white/10">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#E2E8F3]">
                 <div
-                  className={`w-9 h-9 rounded-full bg-linear-to-br ${t.color} flex items-center justify-center text-white text-xs font-bold shrink-0`}
+                  className={`w-9 h-9 rounded-full bg-linear-to-br ${t.color} flex items-center justify-center text-[#0D2149] text-xs font-bold shrink-0`}
                 >
                   {t.initials}
                 </div>
                 <div>
-                  <p className="text-white text-sm font-medium">{t.author}</p>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-[#0D2149] text-sm font-medium">{t.author}</p>
+                  <p className="text-[#8A96B5] text-xs">
                     {t.business} · {t.location}
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
